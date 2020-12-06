@@ -13,6 +13,7 @@ namespace KomodoClaims_Console
         private ClaimsRepo _claimsRepo = new ClaimsRepo();
         public void Run()
         {
+            SeedClaimsList();
             Menu();
         }
 
@@ -66,7 +67,25 @@ namespace KomodoClaims_Console
         //See All Claims
         private void DisplayAllClaims()
         {
+            Console.Clear();
+            List<Claims> listOfClaims = _claimsRepo.GetListOfClaims();
 
+            if (listOfClaims != null)
+            {
+                Console.WriteLine("Claim ID\t " +
+                  "Type\t" +
+                  "Dscription\t\t" +
+                  "Amount\t" +
+                  "DateOfAccident\t" +
+                  "DateOfClaim\t" +
+                  "IsValid");
+
+
+            }
+            else
+            {
+                Console.WriteLine("No Claims Currently Exist.")
+            }
         }
 
         //Process Claim
@@ -115,5 +134,20 @@ namespace KomodoClaims_Console
             
             _claimsRepo.AddClaim(newClaim);
         }
+
+        //Seed Claims
+        private void SeedClaimsList()
+        {
+            Claims claim1 = new Claims(1,ClaimType.Car,"Car accident on 464", 400.00, "4/25/18", "4/27/18", true);
+            Claims claim2 = new Claims(2, ClaimType.Home, "House fire in kitchen", 4000, "4/11/18", "4/12/18", true);
+            Claims claim3 = new Claims(3, ClaimType.Theft, "Stolen pancakes", 4,"4/27/18", "6/1/18", false);
+
+            _claimsRepo.AddClaim(claim1);
+            _claimsRepo.AddClaim(claim2);
+            _claimsRepo.AddClaim(claim3);
+        }
+
+
+
     }
 }

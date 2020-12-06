@@ -28,14 +28,14 @@ namespace KomodoClaims
 
         public Claims() { }
 
-        public Claims(int claimID, ClaimType typeOfClaim, string description, double claimAmount, DateTime dateOfIncident, DateTime dateOfClaim, bool isValid)
+        public Claims(int claimID, ClaimType typeOfClaim, string description, double claimAmount, string dateOfIncident, string dateOfClaim, bool isValid)
         {
             ClaimID = claimID;
             TypeOfClaim = typeOfClaim;
             Description = description;
             ClaimAmount = claimAmount;
-            DateOfIncident = dateOfIncident;
-            DateOfClaim = dateOfClaim;
+            DateOfIncident = DateTime.Parse(dateOfIncident);
+            DateOfClaim = DateTime.Parse(dateOfClaim);
             IsValid = isValid;
         }
     }
