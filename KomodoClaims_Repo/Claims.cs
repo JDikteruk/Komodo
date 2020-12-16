@@ -15,20 +15,22 @@ namespace KomodoClaims
         public double ClaimAmount { get; set; }
         public DateTime DateOfIncident { get; set; }
         public DateTime DateOfClaim { get; set; }
-        public bool IsValid {
+        public bool IsValid
+            // infinite loop
+        {
             get
             {
-                return DateOfClaim.Subtract(DateOfIncident).Days < 31;
+                return DateOfClaim.Subtract(DateOfIncident).Days < 31; 
             }
-            set 
+            set
             {
-                IsValid = DateOfClaim.Subtract(DateOfIncident).Days < 31;
+                IsValid = DateOfClaim.Subtract(DateOfIncident).Days < 31; 
             }
         }
 
         public Claims() { }
 
-        public Claims(int claimID, ClaimType typeOfClaim, string description, double claimAmount, string dateOfIncident, string dateOfClaim, bool isValid)
+        public Claims(int claimID, ClaimType typeOfClaim, string description, double claimAmount, string dateOfIncident, string dateOfClaim)
         {
             ClaimID = claimID;
             TypeOfClaim = typeOfClaim;
@@ -36,7 +38,6 @@ namespace KomodoClaims
             ClaimAmount = claimAmount;
             DateOfIncident = DateTime.Parse(dateOfIncident);
             DateOfClaim = DateTime.Parse(dateOfClaim);
-            IsValid = isValid;
         }
     }
 }

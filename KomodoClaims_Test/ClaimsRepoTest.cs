@@ -15,7 +15,7 @@ namespace KomodoClaims_Test
         public void Setup()
         {
             _repo = new ClaimsRepo();
-            _claim = new Claims(1, ClaimType.Car, "Collision NB/SB Emerson Ave @ 465W Ramp", 1427.32, DateTime.Parse("12/1/2020"), DateTime.Parse("12/5/2020"), true);
+            _claim = new Claims(1, ClaimType.Car, "Collision NB/SB Emerson Ave @ 465W Ramp", 1427.32, "12/1/2020", "12/5/2020");
 
             _repo.AddClaim(_claim);
         }
@@ -38,7 +38,7 @@ namespace KomodoClaims_Test
         [TestMethod]
         public void UpdateClaim_ShouldReturnTrue()
         {
-            Claims newParm = new Claims(1, ClaimType.Car, "Collision NB/SB Emerson Ave @ 465W Ramp", 3427.32, DateTime.Parse("11/25/2020"), DateTime.Parse("12/5/2020"), true);
+            Claims newParm = new Claims(1, ClaimType.Car, "Collision NB/SB Emerson Ave @ 465W Ramp", 3427.32, "11/25/2020", "12/5/2020");
 
             bool updateResult = _repo.UpdateClaimDetails(1, newParm);
 

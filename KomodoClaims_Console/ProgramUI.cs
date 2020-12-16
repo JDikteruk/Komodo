@@ -32,6 +32,7 @@ namespace KomodoClaims_Console
 
                 //User Input
                 string input = Console.ReadLine();
+                Console.Clear();
 
                 //Evaluate Input
                 switch (input)
@@ -67,10 +68,13 @@ namespace KomodoClaims_Console
         //See All Claims
         private void DisplayAllClaims()
         {
-            Console.Clear();
-            List<Claims> listOfClaims = _claimsRepo.GetListOfClaims();
+            //Queue & peek method
+            //_queue.queue
+            //_queue.dequeue
 
-            if (listOfClaims != null)
+            Queue<Claims> _queue = _claimsRepo.GetQueueOfClaims();
+
+            if (_queue!= null)
             {
                 Console.WriteLine("Claim ID\t " +
                   "Type\t" +
@@ -80,28 +84,59 @@ namespace KomodoClaims_Console
                   "DateOfClaim\t" +
                   "IsValid");
 
+                foreach (Claims claim in _queue)
+                { Console.WriteLine(claim.ClaimID.ToString() + "\t" + claim.TypeOfClaim + "\t" + claim.Description + "\t" + claim.ClaimAmount); }
+                
 
             }
             else
             {
-                Console.WriteLine("No Claims Currently Exist.")
+                Console.WriteLine("No Claims Currently Exist.");
             }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
 
         //Process Claim
         private void ProcessClaim()
         {
+            Queue<Claims> _queue = _claimsRepo.GetQueueOfClaims();
 
+            Claims claim = _queue.Peek();
+
+            Console.WriteLine($"ClaimID: {claim.ClaimID}\n" +
+                $"Type: {claim.TypeOfClaim}\n" +
+                $"Description: {claim.Description}\n" +
+                $"Amount: {claim.ClaimAmount}\n" +
+                $"DateOfAccident: {claim.DateOfIncident}\n" +
+                $"DateOfClaim: {claim.DateOfClaim}\n" +
+                $"IsValid: {claim.IsValid}\n");
+
+
+            Console.WriteLine("Do you want to deal with this claim now (y/n)?");
+            string input = Console.ReadLine().ToLower();
+
+            switch(input)
+            {
+                case "y":
+                    _queue.Dequeue();
+                    break;
+                case "n":
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid option.");
+                    break;
+            }
         }
 
         //Enter New Claim
         private void NewClaim()
         {
-            Console.Clear();
             Claims newClaim = new Claims();
 
             //ClaimID
-            newClaim.ClaimID = _claimsRepo.GetListOfClaims().Count + 1;
+            newClaim.ClaimID = _claimsRepo.GetQueueOfClaims().Count + 1;
 
             //ClaimType
             Console.WriteLine("Enter a number for Type:\n" +
@@ -138,9 +173,9 @@ namespace KomodoClaims_Console
         //Seed Claims
         private void SeedClaimsList()
         {
-            Claims claim1 = new Claims(1,ClaimType.Car,"Car accident on 464", 400.00, "4/25/18", "4/27/18", true);
-            Claims claim2 = new Claims(2, ClaimType.Home, "House fire in kitchen", 4000, "4/11/18", "4/12/18", true);
-            Claims claim3 = new Claims(3, ClaimType.Theft, "Stolen pancakes", 4,"4/27/18", "6/1/18", false);
+            Claims claim1 = new Claims(1, ClaimType.Car,"Car accident on 464", 400.00, "4/25/18", "4/27/18");
+            Claims claim2 = new Claims(2, ClaimType.Home, "House fire in kitchen", 4000, "4/11/18", "4/12/18");
+            Claims claim3 = new Claims(3, ClaimType.Theft, "Stolen pancakes", 4,"4/27/18", "6/1/18");
 
             _claimsRepo.AddClaim(claim1);
             _claimsRepo.AddClaim(claim2);

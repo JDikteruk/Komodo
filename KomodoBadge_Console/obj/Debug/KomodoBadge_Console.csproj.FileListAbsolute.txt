@@ -1,0 +1,10 @@
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\obj\Debug\KomodoBadge_Console.csprojAssemblyReference.cache
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\obj\Debug\KomodoBadge_Console.csproj.CoreCompileInputs.cache
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\bin\Debug\KomodoBadge_Console.exe.config
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\bin\Debug\KomodoBadge_Console.exe
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\bin\Debug\KomodoBadge_Console.pdb
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\bin\Debug\KomodoBadge_Repo.dll
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\bin\Debug\KomodoBadge_Repo.pdb
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\obj\Debug\KomodoBadge_Console.csproj.CopyComplete
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\obj\Debug\KomodoBadge_Console.exe
+C:\Users\jonat\OneDrive\ElevenFiftyProjects\DotNetProjects\Komodo\KomodoBadge_Console\obj\Debug\KomodoBadge_Console.pdb

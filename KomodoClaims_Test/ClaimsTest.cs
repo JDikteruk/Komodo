@@ -19,7 +19,8 @@ namespace KomodoClaims_test
 
             Assert.AreEqual(expected, actual);
         }
-
+        
+        //CultureInfo us = new CultureInfo("en-US");
 
         [DataTestMethod]
         [DataRow("10/5/2020", "10/25/2020", true)]

@@ -9,18 +9,18 @@ namespace KomodoClaims_Repo
 {
     public class ClaimsRepo
     {
-        private List<Claims> _listOfClaims = new List<Claims>();
+        private Queue<Claims> _queueOfClaims = new Queue<Claims>();
         
         //Create
         public void AddClaim(Claims detail)
         {
-            _listOfClaims.Add(detail);
+            _queueOfClaims.Enqueue(detail);
         }
 
         //Read
-        public List<Claims> GetListOfClaims()
+        public Queue<Claims> GetQueueOfClaims()
         {
-            return _listOfClaims;
+            return _queueOfClaims;
         }
 
         //Update
@@ -58,9 +58,9 @@ namespace KomodoClaims_Repo
                 return false;
             }
 
-            int initialCount = _listOfClaims.Count;
-            _listOfClaims.Remove(claim);
-            if (initialCount > _listOfClaims.Count)
+            int initialCount = _queueOfClaims.Count;
+            //_queueOfClaims.Dequeue(claim);
+            if (initialCount > _queueOfClaims.Count)
             {
                 return true;
             }
@@ -73,7 +73,7 @@ namespace KomodoClaims_Repo
         //Helper
         public Claims GetClaimByID(int id)
         {
-            foreach(Claims claim in _listOfClaims)
+            foreach(Claims claim in _queueOfClaims)
             {
                 if(claim.ClaimID == id)
                 {
