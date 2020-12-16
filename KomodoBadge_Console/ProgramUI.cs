@@ -15,21 +15,24 @@ namespace KomodoBadge_Console
         private List<string> _doorNames = new List<string>();
         public void Run()
         {
+            Seed();
             Menu();
         }
 
         private void Menu()
         {
-            Console.WriteLine("Hello Security Admin, What would you like to do?\n" +
+            bool active = true;
+            while (active)
+            {
+                Console.Clear();
+                Console.WriteLine("Hello Security Admin, What would you like to do?\n" +
                 "1. Add a badge\n" +
                 "2. Edit a badge\n" +
                 "3. List all Badges\n" +
                 "4. Exit");
 
-            string input = Console.ReadLine();
-            bool active = true;
-            while (active)
-            {
+                string input = Console.ReadLine();
+
                 Console.Clear();
                 switch (input)
                 {
@@ -48,7 +51,7 @@ namespace KomodoBadge_Console
                                 _doorNames.Add(inpt);
                                 Console.WriteLine("Add another door (y/n) ?");
 
-                                string inp = Console.ReadLine();
+                                string inp = Console.ReadLine().ToLower();
 
                                 switch (inp)
                                 {
@@ -68,7 +71,10 @@ namespace KomodoBadge_Console
                         break;
 
                     case "2":
-                        //_repo.UpdateBadgeAccess();
+                        Console.WriteLine("Update badge ID:");
+                        string inputAsString = Console.ReadLine();
+                        int badge = int.Parse(inputAsString);
+                        _repo.UpdateBadgeAccess(badge);
                         break;
                     case "3":
                         _repo.GetBadgeList();
@@ -84,5 +90,26 @@ namespace KomodoBadge_Console
                 }
             }
         }
+
+        //Seed Badge List
+        private void Seed()
+        {
+            _doorNames.Add("A7");
+            _repo.AddBadge(12345, _doorNames);
+            _doorNames.Clear();
+
+            _doorNames.Add("A1");
+            _doorNames.Add("A4");
+            _doorNames.Add("B1");
+            _doorNames.Add("B2");
+            _repo.AddBadge(22345, _doorNames);
+            _doorNames.Clear();
+
+            _doorNames.Add("A4");
+            _doorNames.Add("A5");
+            _repo.AddBadge(32345, _doorNames);
+            _doorNames.Clear();
+        }
+
     }
 }

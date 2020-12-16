@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,15 @@ namespace KomodoBadge_Repo
         //Read
         public Dictionary<int, List<string>> GetBadgeList()
         {
-            return _dictBadges;
+            Console.WriteLine("Badge #\t" +
+                "Door Access");
+            foreach (KeyValuePair<int, List<string>> _badges in _dictBadges)
+            {
+                Console.WriteLine("{0}\t{1}",
+                    _badges.Key,
+                    _badges.Value);
+            }
+            return null;
         }
 
         //Update
@@ -91,14 +100,14 @@ namespace KomodoBadge_Repo
         {
             var badge = new Badge();
 
-            foreach (KeyValuePair <int, List<string>> badges in _dictBadges) 
+
+            if (_dictBadges.ContainsKey(bID))
             {
-                if (_dictBadges.ContainsKey(bID))
-                {
-                    badge.BadgeID = bID;
-                    badge.DoorNames = badges.Value;
-                }
+                badge.BadgeID = bID;
+                _dictBadges.TryGetValue(bID, out List<string> doorNames);
+                badge.DoorNames = doorNames;
             }
+
             return null;
         }
     }
