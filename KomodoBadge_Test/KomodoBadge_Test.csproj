@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KomodoBadge_Console\KomodoBadge_Console.csproj">
+      <Project>{59585EC8-4E4D-48A4-B49D-AD98EECCE033}</Project>
+      <Name>KomodoBadge_Console</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KomodoBadge_Repo\KomodoBadge_Repo.csproj">
       <Project>{129B3383-173A-4AA4-92BD-899BB7D4DA9A}</Project>
       <Name>KomodoBadge_Repo</Name>

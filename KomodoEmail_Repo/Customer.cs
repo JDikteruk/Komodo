@@ -57,8 +57,14 @@ namespace KomodoEmail_Repo
 
         public int CompareTo(Customer other)
         {
-            return this.FirstName.CompareTo(other.FirstName);
-            
+            if (this.LastName.CompareTo(other.LastName) != 0)
+            {
+                return this.LastName.CompareTo(other.LastName);
+            }
+            else 
+            {
+                return this.FirstName.CompareTo(other.FirstName);
+            }
         }
     }
 }

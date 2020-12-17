@@ -85,7 +85,7 @@ namespace KomodoBadge_Console
                         Console.ReadKey();
                         break;
                     case "4":
-                        Console.WriteLine("Update badge ID:");
+                        Console.WriteLine("Delete badge ID:");
                         string inputAsStr = Console.ReadLine();
                         int badgeid = int.Parse(inputAsStr);
                         _repo.DeleteBadge(badgeid);

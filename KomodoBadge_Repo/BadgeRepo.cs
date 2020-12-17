@@ -71,7 +71,9 @@ namespace KomodoBadge_Repo
                                 Console.WriteLine("Please enter a valid option");
                                 break;
                         }
-
+                        Console.WriteLine("Badge {0} has access to doors: {1}", badge.BadgeID, string.Join(", ", badge.DoorNames));
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
                         break;
                     case "2":
                         Console.WriteLine("Door Code to REMOVE Access:");
@@ -90,6 +92,9 @@ namespace KomodoBadge_Repo
                                 Console.WriteLine("Please enter a valid option");
                                 break;
                         }
+                        Console.WriteLine("Badge {0} has access to doors: {1}", badge.BadgeID, string.Join(", ", badge.DoorNames));
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
                         break;
                     case "3":
                         update = false;

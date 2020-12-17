@@ -52,8 +52,6 @@ namespace KomodoClaims_Console
                     case "4":
                         //Exit
                         keepRunning = false;
-                        Console.WriteLine("Press any key to log off.");
-                        Console.ReadKey();
                         break;
                     default:
                         Console.WriteLine("Please Enter a Valid Option.");
@@ -85,7 +83,7 @@ namespace KomodoClaims_Console
                   "IsValid");
 
                 foreach (Claims claim in _queue)
-                { Console.WriteLine(claim.ClaimID.ToString() + "\t" + claim.TypeOfClaim + "\t" + claim.Description + "\t" + claim.ClaimAmount); }
+                { Console.WriteLine(claim.ClaimID.ToString() + "\t" + claim.TypeOfClaim + "\t" + claim.Description + "\t" + claim.ClaimAmount + "\t" + claim.DateOfIncident + "\t" + claim.DateOfClaim + "\t" + claim.IsValid); }
                 
 
             }
