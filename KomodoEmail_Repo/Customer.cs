@@ -25,6 +25,8 @@ namespace KomodoEmail_Repo
                         return "We currently have the lowest rates on Helicopter Insurance!";
                     case CustType.Past:
                         return "It's been a long time since we've heard from you, we want you back";
+                    default:
+                        return null;
                 }
             }
             set
@@ -50,7 +52,7 @@ namespace KomodoEmail_Repo
         {
             FirstName = firstName;
             LastName = lastName;
-            Type = CustType;
+            Type = custType;
         };
 
     }

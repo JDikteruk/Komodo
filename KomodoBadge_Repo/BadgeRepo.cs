@@ -11,6 +11,7 @@ namespace KomodoBadge_Repo
     public class BadgeRepo
     {
         private Dictionary<int, List<string>> _dictBadges = new Dictionary<int, List<string>>();
+        private Badge badge = new Badge();
 
 
         //Create
@@ -28,7 +29,7 @@ namespace KomodoBadge_Repo
             {
                 Console.WriteLine("{0}\t{1}",
                     _badges.Key,
-                    _badges.Value);
+                    string.Join(", ", _badges.Value));
             }
             return null;
         }
@@ -37,7 +38,7 @@ namespace KomodoBadge_Repo
         public void UpdateBadgeAccess(int badgeID)
         {
             var badge = GetBadgeByID(badgeID);
-            Console.WriteLine("Badge {0} has access to doors: {1}", badge.BadgeID, badge.DoorNames);
+            Console.WriteLine("Badge {0} has access to doors: {1}", badge.BadgeID, string.Join(", ", badge.DoorNames));
 
             //Add or Remove
             Console.WriteLine("\nWhat would you like to do?\n" +
@@ -55,13 +56,40 @@ namespace KomodoBadge_Repo
                 {
                     case "1":
                         Console.WriteLine("Door Code to GRANT Access:");
-                        string inpt = Console.ReadLine();
+                        string inpt = Console.ReadLine().ToUpper();
                         badge.DoorNames.Add(inpt);
+                        Console.WriteLine("Would you like to edit another door (y/n)?");
+                        string edit = Console.ReadLine().ToLower();
+                        switch (edit)
+                        {
+                            case "y":
+                                break;
+                            case "n":
+                                update = false;
+                                break;
+                            default:
+                                Console.WriteLine("Please enter a valid option");
+                                break;
+                        }
+
                         break;
                     case "2":
                         Console.WriteLine("Door Code to REMOVE Access:");
-                        string inp = Console.ReadLine();
+                        string inp = Console.ReadLine().ToUpper();
                         badge.DoorNames.Remove(inp);
+                        Console.WriteLine("Would you like to edit another door (y/n)?");
+                        string edt = Console.ReadLine().ToLower();
+                        switch (edt)
+                        {
+                            case "y":
+                                break;
+                            case "n":
+                                update = false;
+                                break;
+                            default:
+                                Console.WriteLine("Please enter a valid option");
+                                break;
+                        }
                         break;
                     case "3":
                         update = false;
@@ -98,17 +126,18 @@ namespace KomodoBadge_Repo
         //Helper
         private Badge GetBadgeByID(int bID)
         {
-            var badge = new Badge();
-
 
             if (_dictBadges.ContainsKey(bID))
             {
                 badge.BadgeID = bID;
                 _dictBadges.TryGetValue(bID, out List<string> doorNames);
                 badge.DoorNames = doorNames;
+                return badge;
             }
-
-            return null;
+            else
+            {
+                return null;
+            }
         }
     }
 }

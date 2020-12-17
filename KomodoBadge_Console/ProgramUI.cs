@@ -12,7 +12,7 @@ namespace KomodoBadge_Console
     {
         private Badge _badge = new Badge();
         private BadgeRepo _repo = new BadgeRepo();
-        private List<string> _doorNames = new List<string>();
+
         public void Run()
         {
             Seed();
@@ -29,7 +29,8 @@ namespace KomodoBadge_Console
                 "1. Add a badge\n" +
                 "2. Edit a badge\n" +
                 "3. List all Badges\n" +
-                "4. Exit");
+                "4. Delete a Badge\n" +
+                "5. Exit");
 
                 string input = Console.ReadLine();
 
@@ -37,6 +38,7 @@ namespace KomodoBadge_Console
                 switch (input)
                 {
                     case "1":
+                        var _doorNames = new List<string>();
                         bool idLoop = true;
                         while (idLoop)
                         {
@@ -47,7 +49,7 @@ namespace KomodoBadge_Console
                             while (doorUpdate)
                             {
                                 Console.WriteLine("Grant access to door:");
-                                string inpt = Console.ReadLine();
+                                string inpt = Console.ReadLine().ToUpper();
                                 _doorNames.Add(inpt);
                                 Console.WriteLine("Add another door (y/n) ?");
 
@@ -63,6 +65,7 @@ namespace KomodoBadge_Console
                                         break;
                                     default:
                                         Console.WriteLine("Please enter a valid option.");
+                                        doorUpdate = false;
                                         break;
                                 }
                             }
@@ -78,8 +81,16 @@ namespace KomodoBadge_Console
                         break;
                     case "3":
                         _repo.GetBadgeList();
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
                         break;
                     case "4":
+                        Console.WriteLine("Update badge ID:");
+                        string inputAsStr = Console.ReadLine();
+                        int badgeid = int.Parse(inputAsStr);
+                        _repo.DeleteBadge(badgeid);
+                        break;
+                    case "5":
                         active = false;
                         break;
                     default:
@@ -94,21 +105,22 @@ namespace KomodoBadge_Console
         //Seed Badge List
         private void Seed()
         {
-            _doorNames.Add("A7");
-            _repo.AddBadge(12345, _doorNames);
-            _doorNames.Clear();
+            var _doorNames1 = new List<string>();
+            _doorNames1.Add("A7");
+            _repo.AddBadge(12345, _doorNames1);
 
-            _doorNames.Add("A1");
-            _doorNames.Add("A4");
-            _doorNames.Add("B1");
-            _doorNames.Add("B2");
-            _repo.AddBadge(22345, _doorNames);
-            _doorNames.Clear();
+            var _doorNames2 = new List<string>();
+            _doorNames2.Add("A1");
+            _doorNames2.Add("A4");
+            _doorNames2.Add("B1");
+            _doorNames2.Add("B2");
+            _repo.AddBadge(22345, _doorNames2);
 
-            _doorNames.Add("A4");
-            _doorNames.Add("A5");
-            _repo.AddBadge(32345, _doorNames);
-            _doorNames.Clear();
+            var _doorNames3 = new List<string>();
+            _doorNames3.Add("A4");
+            _doorNames3.Add("A5");
+            _repo.AddBadge(32345, _doorNames3);
+            
         }
 
     }
