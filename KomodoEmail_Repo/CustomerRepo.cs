@@ -8,7 +8,7 @@ namespace KomodoEmail_Repo
 {
     public class CustomerRepo
     {
-        private List<Customer> _CustList = new List<Customer>;
+        private List<Customer> _CustList = new List<Customer>();
 
         //Create
         public void AddCustomer(Customer cust)
@@ -19,11 +19,22 @@ namespace KomodoEmail_Repo
         //Read
         public List<Customer> GetCustomers()
         {
+            _CustList.Sort();
             return _CustList;
         }
 
         //Update
+        public void UpdateCustomer(string frtNM, string lstNM, Customer customer)
+        {
+            var c = GetCustomersByName(frtNM, lstNM);
 
+            if (c != null)
+            {
+                c.FirstName = customer.FirstName;
+                c.LastName = customer.LastName;
+                c.Type = customer.Type;
+            }
+        }
 
         //Delete
         public bool RemoveCustomer(string firstNM, string lastNM)

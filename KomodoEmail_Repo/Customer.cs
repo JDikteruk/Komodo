@@ -8,7 +8,7 @@ namespace KomodoEmail_Repo
 {
     public enum CustType { Current = 1, Future, Past };
 
-    public class Customer
+    public class Customer : IComparable<Customer>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -46,14 +46,19 @@ namespace KomodoEmail_Repo
             }
         }
 
-        public Customer() { };
+        public Customer() { }
 
         public Customer(string firstName, string lastName, CustType custType) 
         {
             FirstName = firstName;
             LastName = lastName;
             Type = custType;
-        };
+        }
 
+        public int CompareTo(Customer other)
+        {
+            return this.FirstName.CompareTo(other.FirstName);
+            
+        }
     }
 }
